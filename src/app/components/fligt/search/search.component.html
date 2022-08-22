@@ -1,0 +1,58 @@
+<div class="container">
+
+   <div class="row">
+      <div class="col-md-6 p-lg-6 mx-auto my-5">
+        <div class="input-group mb-3">
+          <input id="typeahead-basic" type="text" class="form-control" [(ngModel)]="airportSelected" [ngbTypeahead]="getAirportNames" placeholder="Search for Flights using Arrival or Departure Airport Names or Codes"/>
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button" (click)="searchFlight()">Go</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="flights.length === 0 && searchPerformed">
+      <div class="col">
+        <div>No Records Found</div>
+      </div>
+    </div>    
+
+    <div class="row" *ngIf="flights.length > 0 && searchPerformed">
+      <div class="col">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>ORIGIN</th>
+              <th>DESTINATION</th>
+              <th>ORIGIN FULL NAME</th>
+              <th>DESTINATION FULL NAME</th>
+              <th>FLIGHT NUMBER</th>
+              <th>Scheduled Origin Gate</th>
+              <th>Scheduled Destination Gate</th>
+              <th>Out GMT</th>
+              <th>In GMT</th>
+              <th>OFF GMT</th>
+              <th>On GMT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flight of flights;">
+              <td>{{ flight.origin}}</td>
+              <td>{{ flight.destination}}</td>
+              <td>{{ flight.origin_full_name}}</td>
+              <td>{{ flight.destination_full_name}}</td>
+              <td>{{ flight.flt_num}}</td>
+              <td>{{ flight.scheduled_origin_gate}}</td>
+              <td>{{ flight.scheduled_destination_gate}}</td>
+              <td>{{ flight.out_gmt}}</td>
+              <td>{{ flight.in_gmt}}</td>
+              <td>{{ flight.off_gmt}}</td>
+              <td>{{ flight.on_gmt}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>  
+
+</div>
+<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
